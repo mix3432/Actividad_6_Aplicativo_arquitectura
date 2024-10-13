@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Reciclaje en Altamira</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Gestión de Reciclaje en Altamira</h1>
+    </header>
+
+    <main>
+        <!-- Sección de Login -->
+        <section id="loginSection">
+            <h2>Iniciar Sesión</h2>
+            <form id="loginForm">
+                <label for="loginEmail">Correo electrónico:</label>
+                <input type="email" id="loginEmail" name="loginEmail" required>
+
+                <label for="loginPassword">Contraseña:</label>
+                <input type="password" id="loginPassword" name="loginPassword" required>
+
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+            <div id="loginMessage"></div>
+        </section>
+
+        <!-- Sección de Registro -->
+        <section id="registerSection">
+            <h2>Registrar Usuario</h2>
+            <form id="registerForm">
+                <label for="registerEmail">Correo electrónico:</label>
+                <input type="email" id="registerEmail" name="registerEmail" required>
+
+                <label for="registerPassword">Contraseña:</label>
+                <input type="password" id="registerPassword" name="registerPassword" required>
+
+                <button type="submit">Registrar</button>
+            </form>
+            <div id="registerMessage"></div>
+        </section>
+
+        <!-- Sección visible solo después de iniciar sesión -->
+        <section id="authenticatedSection" style="display: none;">
+            <h2>Bienvenido</h2>
+            <p id="userEmail"></p>
+            <button id="logoutButton">Cerrar Sesión</button>
+
+            <!-- Mapa de Puntos de Reciclaje -->
+            <section>
+                <h2>Mapa de Puntos de Reciclaje</h2>
+                <div id="map" style="height: 400px; width: 100%;"></div>
+            </section>
+
+            <!-- Foro Comunitario -->
+            <section>
+                <h2>Foro Comunitario</h2>
+                <form id="forumPostForm">
+                    <label for="postContent">Publicar:</label>
+                    <textarea id="postContent" required></textarea>
+                    <button type="submit">Publicar</button>
+                </form>
+                <ul id="forumPosts"></ul>
+            </section>
+        </section>
+    </main>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBj9W_AHSTxK3PjaEDbVnxOfd0vibRiv-4&callback=initMap"></script>
+    <script src="app.js"></script>
+    <script>
+        function initMap() {
+            const map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 4.610, lng: -74.070 }, // Cambia a la latitud y longitud deseadas
+                zoom: 12
+            });
+
+            const marker = new google.maps.Marker({
+                position: { lat: 4.610, lng: -74.070 }, // Cambia a la latitud y longitud deseadas
+                map: map,
+                title: 'Punto de Reciclaje'
+            });
+        }
+    </script>
+</body>
+</html>
